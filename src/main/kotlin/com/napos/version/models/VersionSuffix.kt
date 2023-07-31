@@ -1,4 +1,4 @@
-package com.napos.versioning.models
+package com.napos.version.models
 
 data class VersionSuffix(
     val suffix: Suffix,

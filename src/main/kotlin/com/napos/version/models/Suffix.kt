@@ -1,4 +1,4 @@
-package com.napos.versioning.models
+package com.napos.version.models
 
 enum class Suffix(val hierarchy: Int, val label: String) {
     SNAPSHOT(0, "SNAPSHOT"),

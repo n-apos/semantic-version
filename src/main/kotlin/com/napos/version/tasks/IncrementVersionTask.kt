@@ -1,7 +1,7 @@
-package com.napos.versioning.tasks
+package com.napos.version.tasks
 
-import com.napos.versioning.models.Increment
-import com.napos.versioning.models.Suffix
+import com.napos.version.models.Increment
+import com.napos.version.models.Suffix
 import org.gradle.api.DefaultTask
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input
