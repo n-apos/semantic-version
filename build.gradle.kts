@@ -1,9 +1,8 @@
 plugins {
     kotlin("jvm") version "1.9.0"
-    application
 }
 
-group = "com.n-apos"
+group = "com.napos"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -11,6 +10,7 @@ repositories {
 }
 
 dependencies {
+    implementation(gradleApi())
     testImplementation(kotlin("test"))
 }
 
