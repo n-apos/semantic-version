@@ -13,6 +13,10 @@ data class VersionSuffix(
 
     override fun toString(): String =
         "${suffix.label}${
-            if (number in 0..99) String.format("%.2f", number) else ""
+            if (number in 0..99)
+                number.toString()
+                    .padStart(2, '0') 
+            else
+                ""
         }"
 }
