@@ -1,4 +1,4 @@
-package com.napos.version.models
+package com.napos.version.data.models
 
 enum class Increment {
     MAJOR,
@@ -6,4 +6,5 @@ enum class Increment {
     PATCH,
     ADDITIONAL,
     SUFFIX,
+    SUFFIX_INCREMENT,
 }
