@@ -6,9 +6,21 @@ enum class Suffix(val hierarchy: Int, val label: String) {
     BETA(2, "beta"),
     CANARY(3, "canary"),
     RC(4, "rc"),
-    NONE(5, ""), ;
+    NONE(5, ""),
+    ;
+
+    fun isSerial(): Boolean =
+        this in SERIALS
 
     companion object {
+
+        private val SERIALS = arrayOf(
+            ALPHA,
+            BETA,
+            CANARY,
+            RC,
+        )
+
         fun fromString(label: String): Suffix =
             Suffix.values().firstOrNull { it.label == label } ?: NONE
 

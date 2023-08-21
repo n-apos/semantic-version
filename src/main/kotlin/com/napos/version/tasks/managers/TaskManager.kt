@@ -32,11 +32,10 @@ class TaskManager private constructor() {
 
         fun getInstance(): TaskManager =
             synchronized(this) {
-                instance ?:
-                    TaskManager()
-                        .also {
-                            instance = it
-                        }
+                instance ?: TaskManager()
+                    .also {
+                        instance = it
+                    }
             }
     }
 }

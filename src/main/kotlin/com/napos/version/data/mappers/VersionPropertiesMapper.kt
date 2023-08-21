@@ -26,32 +26,38 @@ class VersionPropertiesMapper {
         }
 
 
-    fun to(props: Properties): Version =
-        Version(
+    fun to(props: Properties): Version {
+        val additional = if (props.containsKey(KEY_ADDITIONAL))
+            props.getProperty(KEY_ADDITIONAL)
+                .toInt()
+        else
+            Int.MIN_VALUE
+
+        val suffix = if (props.containsKey(KEY_SUFFIX))
+            VersionSuffix(
+                suffix = Suffix.fromString(props.getProperty(KEY_SUFFIX)),
+                increment = if (props.containsKey(KEY_SUFFIX_INCREMENT))
+                    props.getProperty(KEY_SUFFIX_INCREMENT)
+                        .toInt()
+                else
+                    Int.MIN_VALUE,
+            )
+        else VersionSuffix(
+            suffix = Suffix.NONE,
+            increment = Int.MIN_VALUE,
+        )
+
+        return Version(
             major = props.getProperty(KEY_MAJOR)
                 .toInt(),
             minor = props.getProperty(KEY_MINOR)
                 .toInt(),
             patch = props.getProperty(KEY_PATCH)
                 .toInt(),
-            additional = if (props.contains(KEY_ADDITIONAL))
-                props.getProperty(KEY_ADDITIONAL)
-                    .toInt()
-            else
-                Int.MIN_VALUE,
-            suffix = if (props.contains(KEY_SUFFIX))
-                VersionSuffix(
-                    suffix = Suffix.fromString(props.getProperty(KEY_SUFFIX)),
-                    increment = if (props.contains(KEY_SUFFIX_INCREMENT))
-                        props.getProperty(KEY_SUFFIX_INCREMENT)
-                            .toInt()
-                    else
-                        Int.MIN_VALUE,
-                )
-            else VersionSuffix(
-                suffix = Suffix.NONE,
-            ),
+            additional = additional,
+            suffix = suffix,
         )
+    }
 
     companion object {
         const val KEY_MAJOR = "major"

@@ -10,7 +10,7 @@ import org.gradle.kotlin.dsl.create
 fun Project.version(configure: Action<VersionPluginExtension>) {
     val ext = extensions.create<VersionPluginExtension>(EXTENSION_NAME)
 
-    if(!ext.path.isPresent) {
+    if (!ext.path.isPresent) {
         ext.path.set(DEFAULT_PROPERTIES_FILE_NAME)
     }
 

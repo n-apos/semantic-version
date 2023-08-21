@@ -1,8 +1,6 @@
 package com.napos.version.tasks.handlers
 
-import com.napos.version.tasks.IncrementVersionTask
-import com.napos.version.tasks.InitializeVersionTask
-import com.napos.version.tasks.VersionTask
+import com.napos.version.tasks.*
 
 object TaskRegisterHandlerFactory {
 
@@ -10,6 +8,8 @@ object TaskRegisterHandlerFactory {
         when (task) {
             is IncrementVersionTask -> IncrementTaskRegisterHandler(task)
             is InitializeVersionTask -> InitializeTaskRegisterHandler(task)
+            is UpgradeVersionTask -> UpgradeTaskRegisterHandler(task)
+            is PromoteVersionTask -> PromoteTaskRegisterHandler(task)
             else -> throw Exception()
         }
 }
