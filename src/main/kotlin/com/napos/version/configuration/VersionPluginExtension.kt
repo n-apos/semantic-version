@@ -15,7 +15,7 @@ abstract class VersionPluginExtension {
      * Default value: `"${project.projectDir}/version.properties"`
      */
     @get:Optional
-    abstract val path: Property<String>
+    abstract val location: Property<String>
 
 
     /**
