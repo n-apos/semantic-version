@@ -1,3 +1,4 @@
+import com.napos.version.util.extensions.serializedVersion
 import com.napos.version.util.extensions.version
 
 plugins {
@@ -5,12 +6,13 @@ plugins {
     `maven-publish`
     alias(libs.plugins.pluginPublish)
     alias(libs.plugins.version)
+    alias(libs.plugins.dokka)
 }
 
 group = "com.napos"
 
 description = "Simple gradle plugin to automate project version management"
-version = "1.0.0-SNAPSHOT"
+version = serializedVersion
 
 repositories {
     mavenCentral()
@@ -37,9 +39,9 @@ gradlePlugin {
     }
 }
 
-version {
-    path = "version.properties"
-}
+//version {
+//
+//}
 
 publishing {
     repositories {

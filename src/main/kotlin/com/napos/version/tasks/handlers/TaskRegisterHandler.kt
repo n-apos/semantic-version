@@ -12,7 +12,7 @@ abstract class TaskRegisterHandler {
     fun handle() {
         with(task) {
             val path = project.extensions.getByType<VersionPluginExtension>()
-                .path
+                .location
 
             outputFile.convention(
                 project.layout.file(path.map { File(it) })

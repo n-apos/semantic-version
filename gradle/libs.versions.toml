@@ -1,11 +1,14 @@
 [versions]
 
-## Plugin ##
+## Plugins ##
 pluginPublish = "1.2.0"
-versioner = "1.0.0-SNAPSHOT"
+version = "0.0.1-SNAPSHOT"
+dokka = "1.8.20"
+
 
 [libraries]
 
 [plugins]
 pluginPublish = { id = "com.gradle.plugin-publish", version.ref = "pluginPublish" }
-version = { id = "com.napos.version", version.ref = "versioner" }
+version = { id = "com.napos.version", version.ref = "version" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }

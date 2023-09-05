@@ -1,22 +1,23 @@
 package com.napos.version.tasks
 
 import com.napos.version.data.mappers.VersionPropertiesMapper
+import com.napos.version.data.models.Version
 import com.napos.version.util.exceptions.PropertiesFileNotFoundException
 import org.gradle.api.tasks.TaskAction
 import java.util.*
 
-abstract class UpgradeVersionTask : VersionTask() {
+abstract class PrintVersionTask : VersionTask() {
 
     private val versionPropertiesMapper: VersionPropertiesMapper = VersionPropertiesMapper()
 
+    var version: Version = Version()
+
     @TaskAction
-    fun upgrade() {
+    fun print() {
         val input = inputFile.asFile.get()
         val reader = input.inputStream()
 
-        val output = outputFile.asFile.get()
-
-        if (!input.exists() || !output.exists()) {
+        if (!input.exists()) {
             throw PropertiesFileNotFoundException(input.path)
         }
 
@@ -24,18 +25,9 @@ abstract class UpgradeVersionTask : VersionTask() {
         props.load(reader)
         reader.close()
 
-        props.forEach {
-            println("${it.key} = ${it.value}")
-        }
-
-        val version = versionPropertiesMapper
+        version = versionPropertiesMapper
             .to(props)
-            .apply { upgrade() }
 
-
-        val writer = input.outputStream()
-        versionPropertiesMapper.from(version)
-            .store(writer, " Upgraded")
-        writer.close()
+        println("Version: $version")
     }
 }
