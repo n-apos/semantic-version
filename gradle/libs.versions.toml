@@ -1,11 +1,11 @@
 [versions]
 
 ## Plugin ##
-pluginPublish = "1.2.0"
+pluginPublish = "1.2.1"
 semanticVersion = "0.1.0-SNAPSHOT"
 
 [libraries]
 
 [plugins]
-pluginPublish = { id = "com.gradle.plugin-publish", version.ref = "pluginPublish" }
+plugin-publish = { id = "com.gradle.plugin-publish", version.ref = "pluginPublish" }
 napos-version = { id = "com.napos.version", version.ref = "semanticVersion" }

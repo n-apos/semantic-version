@@ -1,13 +1,13 @@
 plugins {
     `kotlin-dsl`
     `maven-publish`
-    alias(libs.plugins.pluginPublish)
+    alias(libs.plugins.plugin.publish)
 }
 
 group = "com.napos"
 
 description = "Simple gradle plugin to automate project version management"
-version = "0.1.0-SNAPSHOT"
+version = "0.1.0"
 
 repositories {
     mavenCentral()
@@ -24,7 +24,7 @@ gradlePlugin {
     vcsUrl = "https://github.com/n-apos/semantic-version.git"
 
     plugins {
-        create("version") {
+        create("semantic-version") {
             group = "com.napos"
             id = "com.napos.version"
             displayName = "Gradle plugin to automated versioning"
@@ -47,10 +47,4 @@ tasks.test {
 
 kotlin {
     jvmToolchain(8)
-}
-
-sourceSets {
-    val main by getting {
-        kotlin.srcDirs("build/generated/sources/kotlin/main")
-    }
 }
