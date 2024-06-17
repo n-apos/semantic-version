@@ -3,11 +3,10 @@ plugins {
     alias(libs.plugins.napos.version)
 }
 
-group = "com.napos"
+group = "com.n-apos"
 
 repositories {
     mavenCentral()
-    mavenLocal()
 }
 
 dependencies {
