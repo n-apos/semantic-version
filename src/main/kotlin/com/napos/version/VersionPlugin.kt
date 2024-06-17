@@ -1,12 +1,12 @@
 package com.napos.version
 
-import com.napos.version.tasks.IncrementVersionTask
-import com.napos.version.tasks.InitializeVersionTask
-import com.napos.version.tasks.PromoteVersionTask
-import com.napos.version.tasks.UpgradeVersionTask
+import com.napos.version.configuration.VersionPluginExtension
+import com.napos.version.tasks.*
 import com.napos.version.tasks.managers.TaskManager
+import com.napos.version.util.constants.EXTENSION_NAME
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.create
 
 class VersionPlugin : Plugin<Project> {
 
@@ -14,6 +14,7 @@ class VersionPlugin : Plugin<Project> {
         val taskManager = TaskManager
             .getInstance()
             .apply {
+                add(PrintVersionTask::class.java)
                 add(InitializeVersionTask::class.java)
                 add(IncrementVersionTask::class.java)
                 add(UpgradeVersionTask::class.java)
@@ -21,6 +22,9 @@ class VersionPlugin : Plugin<Project> {
             }
 
         taskManager.register(target)
+        target
+            .extensions
+            .create<VersionPluginExtension>(EXTENSION_NAME)
     }
 
 }

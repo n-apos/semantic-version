@@ -6,6 +6,7 @@ object TaskNameResolver {
 
     fun <T : VersionTask> getName(clazz: Class<T>): String =
         when (clazz) {
+            PrintVersionTask::class.java -> PRINT_TASK_NAME
             IncrementVersionTask::class.java -> INCREMENT_TASK_NAME
             InitializeVersionTask::class.java -> INITIALIZE_TASK_NAME
             UpgradeVersionTask::class.java -> UPGRADE_TASK_NAME
@@ -13,6 +14,7 @@ object TaskNameResolver {
             else -> throw Exception()
         }
 
+    private const val PRINT_TASK_NAME = "printVersion"
     private const val INCREMENT_TASK_NAME = "incrementVersion"
     private const val INITIALIZE_TASK_NAME = "initializeVersion"
     private const val UPGRADE_TASK_NAME = "upgradeVersion"

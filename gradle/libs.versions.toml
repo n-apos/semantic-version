@@ -2,10 +2,10 @@
 
 ## Plugin ##
 pluginPublish = "1.2.0"
-versioner = "1.0.0-SNAPSHOT"
+semanticVersion = "0.1.0-SNAPSHOT"
 
 [libraries]
 
 [plugins]
 pluginPublish = { id = "com.gradle.plugin-publish", version.ref = "pluginPublish" }
-version = { id = "com.napos.version", version.ref = "versioner" }
+napos-version = { id = "com.napos.version", version.ref = "semanticVersion" }

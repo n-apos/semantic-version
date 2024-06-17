@@ -6,6 +6,7 @@ object TaskRegisterHandlerFactory {
 
     fun newInstance(task: VersionTask) =
         when (task) {
+            is PrintVersionTask -> PrintTaskRegisterHandler(task)
             is IncrementVersionTask -> IncrementTaskRegisterHandler(task)
             is InitializeVersionTask -> InitializeTaskRegisterHandler(task)
             is UpgradeVersionTask -> UpgradeTaskRegisterHandler(task)

@@ -4,4 +4,8 @@ import com.napos.version.tasks.InitializeVersionTask
 
 class InitializeTaskRegisterHandler(
     override val task: InitializeVersionTask,
-) : TaskRegisterHandler()
+) : TaskRegisterHandler() {
+
+    // Prevent native file existence verification
+//    override fun handle() = Unit
+}

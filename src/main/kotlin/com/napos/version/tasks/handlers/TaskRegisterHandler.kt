@@ -18,9 +18,11 @@ abstract class TaskRegisterHandler {
                 project.layout.file(path.map { File(it) })
             )
 
-            inputFile.convention(
-                project.layout.file(path.map { File(it) })
-            )
+            if (initializeInput) {
+                inputFile.convention(
+                    project.layout.file(path.map { File(it) })
+                )
+            }
         }
     }
 }
