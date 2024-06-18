@@ -1,14 +1,14 @@
 package com.napos.version.data.models
 
 import com.napos.version.data.Updatable
-import com.napos.version.data.Upgradable
+import com.napos.version.data.models.Increment.SUFFIX
+import com.napos.version.data.models.Increment.SUFFIX_INCREMENT
 
 data class VersionSuffix(
     var suffix: Suffix,
     var increment: Int,
 ) : Comparable<VersionSuffix?>,
-    Updatable<Increment>,
-    Upgradable {
+    Updatable<Increment> {
 
     init {
         validate()
@@ -16,7 +16,7 @@ data class VersionSuffix(
 
     override fun update(type: Increment) {
         when (type) {
-            Increment.SUFFIX -> {
+            SUFFIX -> {
                 suffix = Suffix.fromHierarchy((suffix.hierarchy + 1) % Suffix.values().size)
                 increment = if (suffix.isSerial())
                     1
@@ -24,7 +24,7 @@ data class VersionSuffix(
                     Int.MIN_VALUE
             }
 
-            Increment.SUFFIX_INCREMENT ->
+            SUFFIX_INCREMENT ->
                 when (increment) {
                     in Int.MIN_VALUE until 0 -> increment = 0
                     else -> increment++
@@ -33,13 +33,6 @@ data class VersionSuffix(
             else -> Unit
         }
 
-    }
-
-    override fun upgrade() {
-        when (suffix) {
-            Suffix.NONE -> Unit
-            else -> update(Increment.SUFFIX)
-        }
     }
 
     override fun compareTo(other: VersionSuffix?): Int =

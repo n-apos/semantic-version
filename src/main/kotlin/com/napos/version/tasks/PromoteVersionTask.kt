@@ -28,7 +28,7 @@ abstract class PromoteVersionTask : VersionTask() {
         val version = file
             .readVersion()
             .apply {
-                promote(type)
+                promote()
             }
 
         file.writeVersion(version, "Promoted")

@@ -17,7 +17,6 @@ class VersionPlugin : Plugin<Project> {
                 add(PrintVersionTask::class.java)
                 add(InitializeVersionTask::class.java)
                 add(IncrementVersionTask::class.java)
-                add(UpgradeVersionTask::class.java)
                 add(PromoteVersionTask::class.java)
             }
 
