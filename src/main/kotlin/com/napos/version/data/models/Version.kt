@@ -2,9 +2,8 @@ package com.napos.version.data.models
 
 import com.napos.version.data.Promotable
 import com.napos.version.data.Updatable
-import com.napos.version.data.Upgradable
+import com.napos.version.data.models.Increment.*
 
-@Suppress("EqualsOrHashCode")
 data class Version(
     var major: Int = 0,
     var minor: Int = 0,
@@ -16,27 +15,26 @@ data class Version(
     ),
 ) : Comparable<Version>,
     Updatable<Increment>,
-    Upgradable,
     Promotable {
 
     override fun update(type: Increment) {
         when (type) {
-            Increment.MAJOR -> {
+            MAJOR -> {
                 major++
                 suffix.reset()
             }
 
-            Increment.MINOR -> {
+            MINOR -> {
                 minor++
                 suffix.reset()
             }
 
-            Increment.PATCH -> {
+            PATCH -> {
                 patch++
                 suffix.reset()
             }
 
-            Increment.ADDITIONAL -> {
+            ADDITIONAL -> {
                 when (additional) {
                     in Int.MIN_VALUE until 0 -> additional = 0
                     else -> additional++
@@ -44,20 +42,12 @@ data class Version(
                 suffix.reset()
             }
 
-            Increment.SUFFIX, Increment.SUFFIX_INCREMENT -> suffix.update(type)
+            SUFFIX, SUFFIX_INCREMENT -> suffix.update(type)
         }
     }
 
-    override fun upgrade() {
-        when (suffix.suffix) {
-            Suffix.NONE -> Unit
-            else -> suffix.upgrade()
-        }
-    }
-
-    override fun promote(type: Increment) {
+    override fun promote() {
         suffix.reset()
-        update(type)
     }
 
     override fun equals(other: Any?): Boolean =
@@ -65,6 +55,15 @@ data class Version(
             ?.let {
                 compareTo(it) == 0
             } ?: false
+
+    override fun hashCode(): Int {
+        var result = major.hashCode()
+        result = 31 * result + minor.hashCode()
+        result = 31 * result + patch.hashCode()
+        result = 31 * result + additional.hashCode()
+        result = 31 * result + suffix.hashCode()
+        return result
+    }
 
     override fun compareTo(other: Version): Int =
         (major - other.major)
@@ -82,4 +81,5 @@ data class Version(
         }${
             if (suffix.suffix != Suffix.NONE) "-$suffix" else ""
         }"
+
 }

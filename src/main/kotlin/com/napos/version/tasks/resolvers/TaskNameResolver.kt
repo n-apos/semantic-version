@@ -9,7 +9,6 @@ object TaskNameResolver {
             PrintVersionTask::class.java -> PRINT_TASK_NAME
             IncrementVersionTask::class.java -> INCREMENT_TASK_NAME
             InitializeVersionTask::class.java -> INITIALIZE_TASK_NAME
-            UpgradeVersionTask::class.java -> UPGRADE_TASK_NAME
             PromoteVersionTask::class.java -> PROMOTE_TASK_NAME
             else -> throw Exception()
         }
@@ -17,6 +16,5 @@ object TaskNameResolver {
     private const val PRINT_TASK_NAME = "printVersion"
     private const val INCREMENT_TASK_NAME = "incrementVersion"
     private const val INITIALIZE_TASK_NAME = "initializeVersion"
-    private const val UPGRADE_TASK_NAME = "upgradeVersion"
     private const val PROMOTE_TASK_NAME = "promoteVersion"
 }

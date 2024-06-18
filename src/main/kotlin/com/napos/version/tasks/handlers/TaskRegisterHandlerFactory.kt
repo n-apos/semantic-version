@@ -9,7 +9,6 @@ object TaskRegisterHandlerFactory {
             is PrintVersionTask -> PrintTaskRegisterHandler(task)
             is IncrementVersionTask -> IncrementTaskRegisterHandler(task)
             is InitializeVersionTask -> InitializeTaskRegisterHandler(task)
-            is UpgradeVersionTask -> UpgradeTaskRegisterHandler(task)
             is PromoteVersionTask -> PromoteTaskRegisterHandler(task)
             else -> throw Exception()
         }
