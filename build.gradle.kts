@@ -21,7 +21,7 @@ dependencies {
 
 @Suppress("UnstableApiUsage")
 gradlePlugin {
-    website = "https://github.com/n-apos"
+    website = "https://github.com/n-apos/semantic-version.git"
     vcsUrl = "https://github.com/n-apos/semantic-version.git"
 
     plugins {
