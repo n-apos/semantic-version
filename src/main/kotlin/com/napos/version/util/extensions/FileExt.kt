@@ -22,4 +22,6 @@ fun File.writeVersion(version: Version, comments: String = "") {
     val writer = outputStream()
     mapper.from(version)
         .store(writer, comments)
+    // Not sure about this
+    writer.close()
 }
