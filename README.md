@@ -32,7 +32,7 @@ plugins {
     id("com.n-apos.version") version "x.y.z"
 }
 
-versionPlugin {
+semanticVersion {
     // Configure path to your version properties file (Optional)
     path = "${project.projectDir}/version.properties"
 }

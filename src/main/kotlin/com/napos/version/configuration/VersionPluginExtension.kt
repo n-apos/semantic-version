@@ -10,6 +10,20 @@ abstract class VersionPluginExtension {
 
 
     /**
+     * @deprecated now use 'location' instead
+     * Path to the version properties file.
+     *
+     * Default value: `"${project.projectDir}/version.properties"`
+     */
+    @Deprecated(
+        message = "Migrate to 'location' property instead",
+        replaceWith = ReplaceWith("location"),
+        level = DeprecationLevel.ERROR,
+    )
+    @get:Optional
+    abstract val path: Property<String>
+
+    /**
      * Path to the version properties file.
      *
      * Default value: `"${project.projectDir}/version.properties"`
@@ -26,10 +40,11 @@ abstract class VersionPluginExtension {
     val resolvedVersion: String
         get() =
             try {
-                File(path.get())
+                File(location.get())
                     .readVersion()
                     .toString()
             } catch (e: Exception) {
-                ""
+                e.printStackTrace()
+                "0.0.0"
             }
 }
