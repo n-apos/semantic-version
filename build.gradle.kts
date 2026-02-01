@@ -8,7 +8,7 @@ plugins {
 group = "com.n-apos"
 
 description = "Simple gradle plugin to automate project version management"
-version = "0.1.0"
+version = "0.2.0"
 
 repositories {
     mavenCentral()
