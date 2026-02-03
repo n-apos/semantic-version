@@ -14,7 +14,8 @@ dependencies {
 }
 
 semanticVersion {
-    path = "version.properties"
+    @Suppress("UnstableApiUsage")
+    location = "version.properties"
     project.version = resolvedVersion
 }
 

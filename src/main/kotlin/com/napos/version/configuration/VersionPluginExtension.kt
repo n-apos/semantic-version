@@ -3,6 +3,7 @@ package com.napos.version.configuration
 import com.napos.version.util.extensions.readVersion
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
+import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.Optional
 import java.io.File
 
@@ -28,6 +29,7 @@ abstract class VersionPluginExtension {
      *
      * Default value: `"${project.projectDir}/version.properties"`
      */
+    @get:Input
     @get:Optional
     abstract val location: Property<String>
 
@@ -44,7 +46,6 @@ abstract class VersionPluginExtension {
                     .readVersion()
                     .toString()
             } catch (e: Exception) {
-                e.printStackTrace()
                 "0.0.0"
             }
 }

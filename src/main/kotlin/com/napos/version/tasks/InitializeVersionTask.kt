@@ -13,7 +13,7 @@ abstract class InitializeVersionTask : VersionTask() {
     fun initialize() {
         val file = outputFile.asFile.get()
         if (file.exists()) {
-            throw PropertiesFileExistsException(file.path)
+            println("Version file already exists")
         }
 
         file.writeVersion(Version(), "Initializing version properties file at location : ${file.path}")

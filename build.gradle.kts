@@ -3,12 +3,12 @@ plugins {
     `kotlin-dsl`
     `maven-publish`
     alias(libs.plugins.plugin.publish)
+    alias(libs.plugins.napos.version)
 }
 
 group = "com.n-apos"
 
 description = "Simple gradle plugin to automate project version management"
-version = "0.2.0"
 
 repositories {
     mavenCentral()
@@ -49,4 +49,9 @@ tasks.test {
 
 kotlin {
     jvmToolchain(8)
+}
+
+semanticVersion {
+    location = "version.properties"
+    project.version = resolvedVersion
 }
