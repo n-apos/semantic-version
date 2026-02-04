@@ -1,0 +1,38 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - 'release/**'
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    if: "!contains(github.event.head_commit.message, 'chore(bump_version):')"
+    uses: ./.github/workflows/test.yml
+    with:
+      sha: ${{ github.sha }}
+    secrets: inherit
+
+  build:
+    needs: test
+    uses: ./.github/workflows/build.yml
+    with:
+      sha: ${{ github.sha }}
+
+  bump_version:
+    needs: build
+    uses: ./.github/workflows/bump.yml
+    with:
+      ref: ${{ github.ref }}
+    secrets: inherit
+
+  release:
+    needs: bump_version
+    uses: ./.github/workflows/release.yml
+    with:
+      sha: ${{ needs.bump_version.outputs.sha }}
+      version: ${{ needs.bump_version.outputs.version }}
+    secrets: inherit
