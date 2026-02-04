@@ -21,16 +21,22 @@ data class Version(
         when (type) {
             MAJOR -> {
                 major++
+                minor = 0
+                patch = 0
+                if (additional >= 0) additional = Int.MIN_VALUE
                 suffix.reset()
             }
 
             MINOR -> {
                 minor++
+                patch = 0
+                if (additional >= 0) additional = Int.MIN_VALUE
                 suffix.reset()
             }
 
             PATCH -> {
                 patch++
+                if (additional >= 0) additional = Int.MIN_VALUE
                 suffix.reset()
             }
 

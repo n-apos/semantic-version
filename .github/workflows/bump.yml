@@ -56,7 +56,8 @@ jobs:
       - name: Extract version
         id: extract_version
         run: |
-          VERSION=$(./gradlew printVersion -q | tail -n 1)
+          VERSION=$(./gradlew printVersion -q | sed '2d')
+          echo $VERSION
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Commit, Tag and Push
